@@ -49,7 +49,7 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     //fail('Teste vazio!');
     // TESTE 1: Verifique se o retorno da função createMenu() é um objeto que possui a
     // chave fetchMenu, a qual tem como valor uma função.
-    expect(typeof Object.keys(createMenu().fetchMenu)).toBe('object');
+    expect(typeof Object.keys(createMenu().fetchMenu)).toBe('object', 'function');
     // const objetoRetornado = createMenu(); // Retorno: { fetchMenu: () => {}, ... }
     // ```
     // TESTE 2: Verifique se 'objetoRetornado.fetchMenu()' retorna um objeto cujas chaves são somente `food` e `drink`, 
@@ -66,7 +66,7 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // Agora faça o PASSO 1 no arquivo `src/restaurant.js`.
     // --------------------------------------------------------------------------------------
     // TESTE 4: Verifique se 'objetoRetornado.consumption', após a criação do menu, retorna um array vazio.
-    
+    expect(createMenu())
     // const objetoRetornado = createMenu(objetoQualquer);
     // objetoRetornado.consumption // Retorno: []
     // ```
