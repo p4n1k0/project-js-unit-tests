@@ -46,10 +46,18 @@
 */
 
 // PASSO 1: Crie uma função `createMenu()` que, dado um objeto passado por parâmetro, retorna um objeto com o seguinte formato: { fetchMenu: () => objetoPassadoPorParametro }.
+const menu = { 
+  food: 
+  { coxinha: 3.9, 
+    sopa: 9.9 }, 
+  drink: 
+  { agua: 3.9, 
+    cerveja: 6.9 }, 
+  };
 
-const createMenu = (object) => ({  
+const createMenu = (object) => ({      
     fetchMenu: () => object,
-    consumption: [],
+    consumption: [],    
     order: (string) => createMenu.consumption.push(string),        
 });
 // Agora faça o TESTE 4 no arquivo `tests/restaurant.spec.js`.
