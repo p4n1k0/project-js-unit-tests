@@ -46,25 +46,17 @@
 */
 
 // PASSO 1: Crie uma função `createMenu()` que, dado um objeto passado por parâmetro, retorna um objeto com o seguinte formato: { fetchMenu: () => objetoPassadoPorParametro }.
-const menu = { 
-  food: 
-  { coxinha: 3.9, 
-    sopa: 9.9 }, 
-  drink: 
-  { agua: 3.9, 
-    cerveja: 6.9 }, 
-  };
-
-const createMenu = (object) => ({      
-    fetchMenu: () => object,
-    consumption: [],    
-    order: (string) => createMenu.consumption.push(string),        
-});
+const createMenu = (object) => {
+  const objetoRetornado = { fetchMenu: () => object };
+  return objetoRetornado;
+};
 // Agora faça o TESTE 4 no arquivo `tests/restaurant.spec.js`.
 
 // PASSO 2: Adicione ao objeto retornado por `createMenu` uma chave `consumption` que, como valor inicial, tem um array vazio.
-
 // Agora faça o TESTE 5 no arquivo `tests/restaurant.spec.js`.
+function addConsumption(object) {
+  Object.assign(object, { consumption: [] });
+}
 //------------------------------------------------------------------------------------------
 
 // PASSO 3: Crie uma função, separada da função `createMenu()`, que, dada uma string recebida por parâmetro, 
@@ -80,6 +72,14 @@ const createMenu = (object) => ({
 //
 // const orderFromMenu = (request) => // Lógica que adiciona à chave `consumption` de `restaurant` a string recebida no parâmetro `request`. 
 // // Essa função deve ser associada à chave `order` de `restaurant`
+function addOrder(object) {
+  const order = {
+    order: (string) => {
+      object.consumption.push(string);
+    },
+  };
+  Object.assign(object, order);
+}
 // ```
 // Agora faça o TESTE 6 no arquivo `tests/restaurant.spec.js`.
 
@@ -88,5 +88,24 @@ const createMenu = (object) => ({
 // PASSO 4: adicione ao objeto retornado por `createMenu()` uma chave `pay` com uma função
 // que percorre por todos os itens de `objetoRetornado.consumption`, soma o preço deles e retorna o valor somado acrescido de 10%.
 // DICA: para isso, você precisará percorrer tanto o objeto da chave `food` quanto o objeto da chave `drink`.
+function totalPay(object) {
+  const pay = {
+    pay: () => {
+      const prices = Object.values(object.food).concat(Object.values(object.drink));
+      const menuItems = Object.keys(object.food).concat(Object.keys(object.drink));
+      let paySum = 0;
+      for (let i in object.consumption) {
+        if (menuItems.includes(object.consumption[i])) paySum += prices[menuItems.indexOf(object.consumption[i])];
+      }
+      return paySum;
+    },
+  };
+  Object.assign(object, pay);
+}
 
-module.exports = createMenu;
+// Função para limpar a lista consumption quando chamada
+function resetOrder(object) {
+  object.consumption = [];
+}
+
+module.exports = { createMenu, addConsumption, addOrder, resetOrder, totalPay };

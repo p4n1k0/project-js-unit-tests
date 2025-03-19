@@ -55,16 +55,9 @@ const characters = {
 };
 
 const getCharacter = (name) => {
-  if (name === undefined) {
-    return undefined;
-  }
-
+  if (name === undefined) return undefined;
   const lowered = name.toLowerCase();
-
-  if (characters[lowered]) {
-    return characters[lowered];
-  }
-
+  if (characters[lowered]) return characters[lowered];
   return undefined;
 };
 
