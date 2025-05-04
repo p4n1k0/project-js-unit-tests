@@ -21,6 +21,7 @@ const myCounter = () => {
 
   for (let count = 0; count <= 3; count += 1) {
     array.push(count);
+    
     for (let count2 = 2; count2 <= 3; count2 += 1) {
       array.push(count2);
     }
